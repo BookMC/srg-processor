@@ -1,0 +1,3 @@
+CL: unmapped_class mapped_class
+FD: mapped_owner/mapped_field_name unmapped_owner/unmapped_field_name
+MD: mapped_owner/mapped_method_name ()Z unmapped_owner/unmapped_method_name ()Z
