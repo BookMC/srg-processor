@@ -56,7 +56,7 @@ public class SrgTests {
     }
 
     private String readFile(InputStream stream) {
-        try (stream) {
+        try  {
             try (ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
                 byte[] buffer = new byte[1024];
 
@@ -70,6 +70,13 @@ public class SrgTests {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            // Java 8 sucks :(
+            try {
+                stream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         return null;
