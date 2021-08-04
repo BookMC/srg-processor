@@ -19,7 +19,7 @@ public class SrgTests {
 
     @Test
     @Order(0)
-    public void processFile () {
+    public void processFile() {
         output = new SrgProcessor(readFile(Objects.requireNonNull(getClass().getResourceAsStream("/fake-srg.srg")))).process();
     }
 
@@ -27,11 +27,11 @@ public class SrgTests {
     @Order(1)
     public void testMethod() {
         MappedMethod mappedMethod = output.getMethods().get(0);
-        Assertions.assertEquals("mapped_method_name", mappedMethod.getMappedName());
-        Assertions.assertEquals("mapped_owner", mappedMethod.getMappedOwner());
+        Assertions.assertEquals("deobf_name", mappedMethod.getDeobfuscatedName());
+        Assertions.assertEquals("deobf_owner", mappedMethod.getDeobfuscatedOwner());
 
-        Assertions.assertEquals("unmapped_owner", mappedMethod.getUnmappedOwner());
-        Assertions.assertEquals("unmapped_method_name", mappedMethod.getUnmappedName());
+        Assertions.assertEquals("obf_owner", mappedMethod.getObfuscatedOwner());
+        Assertions.assertEquals("obf_name", mappedMethod.getObfuscatedName());
     }
 
     @Test
@@ -39,11 +39,11 @@ public class SrgTests {
     public void testField() {
         MappedField mappedField = output.getFields().get(0);
 
-        Assertions.assertEquals("mapped_owner", mappedField.getMappedOwner());
-        Assertions.assertEquals("mapped_field_name", mappedField.getMappedName());
+        Assertions.assertEquals("deobf_owner", mappedField.getDeobfuscatedOwner());
+        Assertions.assertEquals("deobf_name", mappedField.getDeobfuscatedName());
 
-        Assertions.assertEquals("unmapped_owner", mappedField.getUnmappedOwner());
-        Assertions.assertEquals("unmapped_field_name", mappedField.getUnmappedName());
+        Assertions.assertEquals("obf_owner", mappedField.getObfuscatedOwner());
+        Assertions.assertEquals("obf_name", mappedField.getObfuscatedName());
     }
 
     @Test
@@ -51,12 +51,12 @@ public class SrgTests {
     public void testClass() {
         MappedClass mappedClass = output.getClasses().get(0);
 
-        Assertions.assertEquals("unmapped_class", mappedClass.getUnmappedName());
-        Assertions.assertEquals("mapped_class", mappedClass.getMappedName());
+        Assertions.assertEquals("obf", mappedClass.getObfuscatedName());
+        Assertions.assertEquals("deobf", mappedClass.getDeobfuscatedName());
     }
 
     private String readFile(InputStream stream) {
-        try  {
+        try {
             try (ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
                 byte[] buffer = new byte[1024];
 

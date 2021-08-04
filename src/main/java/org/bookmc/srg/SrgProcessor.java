@@ -3,9 +3,9 @@ package org.bookmc.srg;
 import org.bookmc.srg.output.SrgOutput;
 import org.bookmc.srg.output.SrgOutputDirty;
 import org.bookmc.srg.processor.RawMappingProcessor;
-import org.bookmc.srg.processor.cl.CLProcessor;
-import org.bookmc.srg.processor.fd.FDProcessor;
-import org.bookmc.srg.processor.md.MDProcessor;
+import org.bookmc.srg.processor.CLProcessor;
+import org.bookmc.srg.processor.FDProcessor;
+import org.bookmc.srg.processor.MDProcessor;
 
 import java.io.*;
 import java.util.Arrays;

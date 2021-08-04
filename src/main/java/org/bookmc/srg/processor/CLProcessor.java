@@ -1,4 +1,4 @@
-package org.bookmc.srg.processor.cl;
+package org.bookmc.srg.processor;
 
 import org.bookmc.srg.output.SrgOutputDirty;
 import org.bookmc.srg.output.MappedClass;

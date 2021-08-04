@@ -1,24 +1,24 @@
 package org.bookmc.srg.output;
 
 public class MappedClass {
-    private final String unmappedName;
-    private final String mappedName;
+    private final String obfuscatedName;
+    private final String deobfuscatedName;
 
-    public MappedClass(String unmappedName, String mappedName) {
-        this.unmappedName = unmappedName;
-        this.mappedName = mappedName;
+    public MappedClass(String obfuscatedName, String deobfuscatedName) {
+        this.obfuscatedName = obfuscatedName;
+        this.deobfuscatedName = deobfuscatedName;
     }
 
-    public String getUnmappedName() {
-        return unmappedName;
+    public String getObfuscatedName() {
+        return obfuscatedName;
     }
 
-    public String getMappedName() {
-        return mappedName;
+    public String getDeobfuscatedName() {
+        return deobfuscatedName;
     }
 
     @Override
     public String toString() {
-        return unmappedName + "=" + mappedName;
+        return obfuscatedName + "=" + deobfuscatedName;
     }
 }

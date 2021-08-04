@@ -1,37 +1,37 @@
 package org.bookmc.srg.output;
 
 public class MappedField {
-    private final String unmappedOwner;
-    private final String mappedOwner;
+    private final String obfuscatedOwner;
+    private final String deobfuscatedOwner;
 
-    private final String unmappedName;
-    private final String mappedName;
+    private final String obfuscatedName;
+    private final String deobfuscatedName;
 
-    public MappedField(String unmappedOwner, String mappedOwner, String unmappedName, String mappedName) {
-        this.unmappedOwner = unmappedOwner;
-        this.mappedOwner = mappedOwner;
-        this.unmappedName = unmappedName;
-        this.mappedName = mappedName;
+    public MappedField(String obfuscatedOwner, String deobfuscatedOwner, String obfuscatedName, String deobfuscatedName) {
+        this.obfuscatedOwner = obfuscatedOwner;
+        this.deobfuscatedOwner = deobfuscatedOwner;
+        this.obfuscatedName = obfuscatedName;
+        this.deobfuscatedName = deobfuscatedName;
     }
 
-    public String getUnmappedOwner() {
-        return unmappedOwner;
+    public String getObfuscatedOwner() {
+        return obfuscatedOwner;
     }
 
-    public String getMappedOwner() {
-        return mappedOwner;
+    public String getDeobfuscatedOwner() {
+        return deobfuscatedOwner;
     }
 
-    public String getUnmappedName() {
-        return unmappedName;
+    public String getObfuscatedName() {
+        return obfuscatedName;
     }
 
-    public String getMappedName() {
-        return mappedName;
+    public String getDeobfuscatedName() {
+        return deobfuscatedName;
     }
 
     @Override
     public String toString() {
-        return unmappedOwner + "/" + unmappedName + "=" + mappedOwner + "/" + mappedName;
+        return obfuscatedOwner + "/" + obfuscatedName + "=" + deobfuscatedOwner + "/" + deobfuscatedName;
     }
 }

@@ -1,9 +1,10 @@
 plugins {
     id "java"
+    id "maven-publish"
 }
 
 group "club.chachy"
-version "1.0.1"
+version "1.1.0"
 
 repositories {
     mavenCentral()
@@ -16,4 +17,29 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+publishing {
+    repositories {
+        maven {
+            url = "$buildDir/repository"
+        }
+    }
+
+    publications {
+        //noinspection GroovyAssignabilityCheck
+        mavenJava(MavenPublication) {
+            from components.java
+            pom {
+                name = "book-loader"
+                url = "https://github.com/BookMC/loader"
+
+                developers {
+                    developer {
+                        name = "ChachyDev"
+                    }
+                }
+            }
+        }
+    }
 }
