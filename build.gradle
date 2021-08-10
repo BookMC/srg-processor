@@ -4,7 +4,7 @@ plugins {
 }
 
 group "club.chachy"
-version "1.1.0"
+version "1.1.1"
 
 repositories {
     mavenCentral()
@@ -22,7 +22,18 @@ test {
 publishing {
     repositories {
         maven {
-            url = "$buildDir/repository"
+            def env = System.getenv()
+
+            boolean isEnvVarsAvailable = env.containsKey("MAVEN_USER") && env.containsKey("MAVEN_PASSWORD")
+
+            if (isEnvVarsAvailable) {
+                credentials {
+                    username env.get("MAVEN_USER")
+                    password env.get("MAVEN_PASSWORD")
+                }
+            }
+
+            url = !isEnvVarsAvailable ? "$buildDir/repository" : "https://maven.bookmc.org/releases/"
         }
     }
 
@@ -31,8 +42,8 @@ publishing {
         mavenJava(MavenPublication) {
             from components.java
             pom {
-                name = "book-loader"
-                url = "https://github.com/BookMC/loader"
+                name = project.name
+                url = "https://github.com/BookMC/${project.name}"
 
                 developers {
                     developer {
