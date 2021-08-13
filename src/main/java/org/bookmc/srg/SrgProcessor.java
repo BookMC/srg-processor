@@ -46,6 +46,8 @@ public class SrgProcessor {
     }
 
     private static String readFile(File file) {
+        if (file == null) return null;
+
         StringBuilder builder = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String lineRead;
