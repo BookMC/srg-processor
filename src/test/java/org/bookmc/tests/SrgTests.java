@@ -26,7 +26,7 @@ public class SrgTests {
     @Test
     @Order(1)
     public void testMethod() {
-        MappedMethod mappedMethod = output.getMethods().get(0);
+        MappedMethod mappedMethod = output.getMethod("obf_owner", "obf_name", "()Z");
         Assertions.assertEquals("deobf_name", mappedMethod.getDeobfuscatedName());
         Assertions.assertEquals("deobf_owner", mappedMethod.getDeobfuscatedOwner());
 
@@ -37,7 +37,7 @@ public class SrgTests {
     @Test
     @Order(2)
     public void testField() {
-        MappedField mappedField = output.getFields().get(0);
+        MappedField mappedField = output.getField("obf_owner", "obf_name");
 
         Assertions.assertEquals("deobf_owner", mappedField.getDeobfuscatedOwner());
         Assertions.assertEquals("deobf_name", mappedField.getDeobfuscatedName());
@@ -49,10 +49,9 @@ public class SrgTests {
     @Test
     @Order(3)
     public void testClass() {
-        MappedClass mappedClass = output.getClasses().get(0);
+        String mappedClass = output.getClass("obf");
 
-        Assertions.assertEquals("obf", mappedClass.getObfuscatedName());
-        Assertions.assertEquals("deobf", mappedClass.getDeobfuscatedName());
+        Assertions.assertEquals("deobf", mappedClass);
     }
 
     private String readFile(InputStream stream) {

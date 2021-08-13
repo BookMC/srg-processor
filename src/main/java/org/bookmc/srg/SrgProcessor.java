@@ -9,6 +9,7 @@ import org.bookmc.srg.processor.MDProcessor;
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class SrgProcessor {
@@ -25,6 +26,10 @@ public class SrgProcessor {
     }
 
     public SrgOutput process() {
+        if (srgFile == null) {
+            return new SrgOutput(new HashMap<>(), new HashMap<>(), new HashMap<>());
+        }
+
         String[] lines = srgFile.split("\n");
         SrgOutputDirty dirty = new SrgOutputDirty();
 
@@ -37,7 +42,7 @@ public class SrgProcessor {
             }
         }
 
-        return new SrgOutput(dirty.getMethods(), dirty.getClasses(), dirty.getFields());
+        return new SrgOutput(dirty.getMethods(), dirty.getFields(), dirty.getClasses());
     }
 
     private static String readFile(File file) {
@@ -50,7 +55,7 @@ public class SrgProcessor {
                 builder.append("\n");
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            return null;
         }
 
         return builder.toString();

@@ -1,34 +1,39 @@
 package org.bookmc.srg.output;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SrgOutputDirty {
-    private final List<MappedMethod> methods = new ArrayList<>();
-    private final List<MappedClass> classes = new ArrayList<>();
-    private final List<MappedField> fields = new ArrayList<>();
-
-    public List<MappedMethod> getMethods() {
-        return methods;
-    }
-
-    public List<MappedClass> getClasses() {
-        return classes;
-    }
-
-    public List<MappedField> getFields() {
-        return fields;
-    }
+    private final Map<String, MappedMethod> methods = new HashMap<>();
+    private final Map<String, String> classes = new HashMap<>();
+    private final Map<String, MappedField> fields = new HashMap<>();
 
     public void addMethod(MappedMethod method) {
-        methods.add(method);
+        String owner = method.getObfuscatedOwner();
+        String name = method.getObfuscatedName();
+        String desc = method.getObfuscatedDescriptor();
+        methods.put(owner + ":" + name + ":" + desc, method);
     }
 
     public void addClass(MappedClass mappedClass) {
-        classes.add(mappedClass);
+        classes.put(mappedClass.getObfuscatedName(), mappedClass.getDeobfuscatedName());
     }
 
     public void addField(MappedField field) {
-        fields.add(field);
+        String owner = field.getObfuscatedOwner();
+        String name = field.getObfuscatedName();
+        fields.put(owner + ":" + name, field);
+    }
+
+    public Map<String, MappedMethod> getMethods() {
+        return methods;
+    }
+
+    public Map<String, String> getClasses() {
+        return classes;
+    }
+
+    public Map<String, MappedField> getFields() {
+        return fields;
     }
 }

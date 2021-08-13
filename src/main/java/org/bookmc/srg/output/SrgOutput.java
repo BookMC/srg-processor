@@ -1,27 +1,29 @@
 package org.bookmc.srg.output;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SrgOutput {
-    private final List<MappedMethod> methods;
-    private final List<MappedClass> classes;
-    private final List<MappedField> fields;
+    private final Map<String, MappedMethod> methods;
+    private final Map<String, MappedField> fields;
+    private final Map<String, String> classes;
 
-    public SrgOutput(List<MappedMethod> methods, List<MappedClass> classes, List<MappedField> fields) {
+    public SrgOutput(Map<String, MappedMethod> methods, Map<String, MappedField> fields, Map<String, String> classes) {
         this.methods = methods;
-        this.classes = classes;
         this.fields = fields;
+        this.classes = classes;
     }
 
-    public List<MappedMethod> getMethods() {
-        return methods;
+    public MappedMethod getMethod(String owner, String name, String descriptor) {
+        return methods.get(owner + ":" + name + ":" + descriptor);
     }
 
-    public List<MappedClass> getClasses() {
-        return classes;
+    public MappedField getField(String owner, String name) {
+        return fields.get(owner + ":" + name);
     }
 
-    public List<MappedField> getFields() {
-        return fields;
+    public String getClass(String name) {
+        return classes.get(name);
     }
 }
